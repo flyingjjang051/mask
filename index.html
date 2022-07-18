@@ -28,14 +28,22 @@
     </header>
     <nav id="menu">
       <ul>
-        <li class="on" data-top="batman.jpg" data-bottom="joker.jpg">Batman vs Joker</li>
-        <li data-top="ironman.jpg" data-bottom="ultron.jpg">IronMan vs Ultron</li>
-        <li data-top="prime.jpg" data-bottom="megatron.jpg">Prime vs Megatron</li>
+        <li class="on" data-top="batman.jpg" data-bottom="joker.jpg" data-top-title="batman" data-bottom-title="joker">Batman vs Joker</li>
+        <li data-top="ironman.jpg" data-bottom="ultron.jpg" data-top-title="Ironman" data-bottom-title="Ultron">IronMan vs Ultron</li>
+        <li data-top="prime.jpg" data-bottom="megatron.jpg" data-top-title="prime" data-bottom-title="megatron">Prime vs Megatron</li>
       </ul>
     </nav>
     <main id="main">
-      <div class="top bg"></div>
-      <div class="bottom bg"></div>
+      <div class="top bg">
+        <div class="txtBox">
+          <h2>batman</h2>
+        </div>
+      </div>
+      <div class="bottom bg">
+        <div class="txtBox">
+          <h2>joker</h2>
+        </div>
+      </div>
       <div class="versus"></div>
       <div class="cover"></div>
     </main>
@@ -55,11 +63,15 @@
           top: posY,
         },
       });
+      gsap.to(".top .txtBox", { opacity: posX / 1920 });
+      gsap.to(".bottom .txtBox", { opacity: 1 - posX / 1920 });
     });
     $("#menu ul li").on("click", function () {
       if ($(this).hasClass("on")) return;
       const topBg = $(this).data("top");
       const bottomBg = $(this).data("bottom");
+      const topTitle = $(this).data("top-title");
+      const bottomTitle = $(this).data("bottom-title");
       $(this).addClass("on").siblings().removeClass("on");
       //gsap.to(".top", { width: "50%" });
       gsap.to(".versus", { left: "50%" });
@@ -70,6 +82,8 @@
         onComplete: function () {
           $(".top").css({ backgroundImage: `url("images/${topBg}")` });
           $(".bottom").css({ backgroundImage: `url("images/${bottomBg}")` });
+          $(".top .txtBox h2").text(topTitle);
+          $(".bottom .txtBox h2").text(bottomTitle);
           gsap.to(".cover", { opacity: 0, duration: 1, ease: "power4.in" });
         },
       });

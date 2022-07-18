@@ -59,36 +59,9 @@ a {
   width: 100%;
   height: 100%;
   box-shadow: 10px 0 5px rgba(0, 0, 0, 0.1);
-  z-index: 2;
-  .txtBox {
-    position: absolute;
-    left: 100px;
-    top: 100px;
-    z-index: 2;
-    h2 {
-      font-size: 10vw;
-      text-transform: uppercase;
-      font-weight: 700;
-      color: #fff;
-      text-shadow: -1px 0 rgba(0, 0, 0, 0.2), 0 1px rgba(0, 0, 0, 0.2), 1px 0 rgba(0, 0, 0, 0.2), 0 -1px rgba(0, 0, 0, 0.2), 3px 3px 3px rgba(0, 0, 0, 0.1);
-    }
-  }
 }
 .bottom {
   background-image: url("../images/joker.jpg");
-  position: relative;
-  .txtBox {
-    position: absolute;
-    right: 100px;
-    bottom: 100px;
-    h2 {
-      font-size: 10vw;
-      text-transform: uppercase;
-      font-weight: 700;
-      color: #fff;
-      text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
-    }
-  }
 }
 .versus {
   width: 1px;
@@ -99,6 +72,7 @@ a {
   z-index: 2;
   top: 0;
   transform: skewX(-11.6deg);
+  display: none;
   &:before {
     content: "VS";
     display: flex;
