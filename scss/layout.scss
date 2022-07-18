@@ -41,6 +41,7 @@ a {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
+  position: relative;
 }
 .bg {
   width: 100%;
@@ -50,7 +51,7 @@ a {
 }
 .top {
   position: absolute;
-  //clip-path: polygon(0 0, 750px 0, 900px 100%, 0% 100%);
+  clip-path: polygon(0 0, 100% 0, 75% 100%, 0% 100%);
   background-image: url("../images/batman.jpg");
   background-color: #f00;
   left: 0;
@@ -65,11 +66,12 @@ a {
 .versus {
   width: 1px;
   height: 100vh;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 1);
   position: absolute;
   left: 50%;
   z-index: 2;
   top: 0;
+  transform: skewX(-11.6deg);
   &:before {
     content: "VS";
     display: flex;
@@ -81,13 +83,14 @@ a {
     font-size: 20px;
     border-radius: 100%;
     top: 50%;
-    left: 50%;
+    left: -30px;
     transform: translate(-50%, -50%);
     position: absolute;
     justify-content: center;
     align-items: center;
     @include longShadow(darken(rgb(212, 10, 10), 10), 40);
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+    transform: skewX(11.6deg);
   }
 }
 #menu {

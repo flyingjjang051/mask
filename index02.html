@@ -43,19 +43,25 @@
   <script>
     //throttle, debounce
     const versusBefore = CSSRulePlugin.getRule(".versus::before");
+    let radius = 50;
     $(window).on("mousemove", function (e) {
       const posX = e.clientX;
       const posY = e.clientY;
-      //gsap.to(".top", { width: posX });
-      gsap.to(".top", { clipPath: `polygon(0 0, ${posX + 100}px 0, ${posX - 100}px 100%, 0% 100%)` });
-      gsap.to(".versus", { left: posX });
-      gsap.to(versusBefore, {
-        duration: 0.25,
-        cssRule: {
-          top: posY,
-        },
-      });
+      gsap.to(".top", { clipPath: `circle(${radius}px at ${posX}px ${posY}px)` });
     });
+    $(".top").on("mousedown", function (e) {
+      radius = 3000;
+      const posX = e.clientX;
+      const posY = e.clientY;
+      gsap.to(".top", { clipPath: `circle(${radius}px at ${posX}px ${posY}px)` });
+    });
+    $(".top").on("mouseup", function (e) {
+      radius = 50;
+      const posX = e.clientX;
+      const posY = e.clientY;
+      gsap.to(".top", { clipPath: `circle(${radius}px at ${posX}px ${posY}px)` });
+    });
+
     $("#menu ul li").on("click", function () {
       if ($(this).hasClass("on")) return;
       const topBg = $(this).data("top");
