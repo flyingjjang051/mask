@@ -50,8 +50,14 @@ a {
 }
 .top {
   position: absolute;
+  //clip-path: polygon(0 0, 750px 0, 900px 100%, 0% 100%);
   background-image: url("../images/batman.jpg");
-  width: 50%;
+  background-color: #f00;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  //box-shadow: 10px 0 10px rgba(0, 0, 0, 0.2);
 }
 .bottom {
   background-image: url("../images/joker.jpg");
@@ -82,4 +88,46 @@ a {
     align-items: center;
     @include longShadow(darken(rgb(212, 10, 10), 10), 40);
   }
+}
+#menu {
+  position: absolute;
+  top: 80px;
+  z-index: 99;
+  width: 100%;
+  ul {
+    display: flex;
+    justify-content: flex-end;
+    li {
+      padding: 15px 20px;
+      background-color: #fff;
+      border-radius: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 5px;
+      font-size: 16px;
+      font-weight: 500;
+      user-select: none;
+      cursor: pointer;
+      overflow: hidden;
+      letter-spacing: -0.01em;
+      &.on {
+        background-color: #f00;
+        @include longShadow(darken(#f00, 20), 30);
+        color: #fff;
+      }
+    }
+  }
+}
+
+.cover {
+  background-color: #000;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
 }

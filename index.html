@@ -25,18 +25,45 @@
     <header id="header">
       <h1><strong>Enemy</strong></h1>
     </header>
+    <nav id="menu">
+      <ul>
+        <li class="on" data-top="batman.jpg" data-bottom="joker.jpg">Batman vs Joker</li>
+        <li data-top="ironman.jpg" data-bottom="ultron.jpg">IronMan vs Ultron</li>
+        <li data-top="prime.jpg" data-bottom="megatron.jpg">Prime vs Megatron</li>
+      </ul>
+    </nav>
     <main id="main">
       <div class="top bg"></div>
       <div class="bottom bg"></div>
       <div class="versus"></div>
+      <div class="cover"></div>
     </main>
   </body>
   <script>
     $(window).on("mousemove", function (e) {
-      console.log(e);
+      //console.log(e);
       const posX = e.clientX;
+      //gsap.to(".top", { clip-path: `polygon(0 0, ${posX - 150} 0, ${posX - 50} 100%, 0% 100%)` });
       gsap.to(".top", { width: posX });
       gsap.to(".versus", { left: posX });
+    });
+    $("#menu ul li").on("click", function () {
+      if ($(this).hasClass("on")) return;
+      const topBg = $(this).data("top");
+      const bottomBg = $(this).data("bottom");
+      $(this).addClass("on").siblings().removeClass("on");
+      gsap.to(".top", { width: "50%" });
+      gsap.to(".versus", { left: "50%" });
+      gsap.to(".cover", {
+        opacity: 1,
+        duration: 1,
+        ease: "power4",
+        onComplete: function () {
+          $(".top").css({ backgroundImage: `url("images/${topBg}")` });
+          $(".bottom").css({ backgroundImage: `url("images/${bottomBg}")` });
+          gsap.to(".cover", { opacity: 0, duration: 1, ease: "power4.in" });
+        },
+      });
     });
   </script>
 </html>
