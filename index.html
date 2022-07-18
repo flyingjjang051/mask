@@ -18,6 +18,7 @@
     <script src="js/imagesloaded.pkgd.min.js"></script>
     <script src="js/isotope.pkgd.min.js"></script>
     <script src="js/greensock/gsap.min.js"></script>
+    <script src="js/greensock/CSSRulePlugin.min.js"></script>
     <script src="js/fancybox.umd.js"></script>
     <script src="js/chart.min.js"></script>
   </head>
@@ -40,12 +41,19 @@
     </main>
   </body>
   <script>
+    //throttle, debounce
+    const versusBefore = CSSRulePlugin.getRule(".versus::before");
     $(window).on("mousemove", function (e) {
-      //console.log(e);
       const posX = e.clientX;
-      //gsap.to(".top", { clip-path: `polygon(0 0, ${posX - 150} 0, ${posX - 50} 100%, 0% 100%)` });
+      const posY = e.clientY;
       gsap.to(".top", { width: posX });
       gsap.to(".versus", { left: posX });
+      gsap.to(versusBefore, {
+        duration: 0.25,
+        cssRule: {
+          top: posY,
+        },
+      });
     });
     $("#menu ul li").on("click", function () {
       if ($(this).hasClass("on")) return;
